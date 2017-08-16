@@ -1,4 +1,4 @@
-unit MangaShiro;
+unit eManga;
 
 {$mode objfpc}{$H+}
 
@@ -67,15 +67,25 @@ begin
 end;
 
 procedure RegisterModule;
-begin
-  with AddModule do
+
+ function AddWebsiteModule(const AWebsite, ARootURL: String): TModuleContainer;
   begin
-    Website := 'MangaShiro';
-    RootURL := 'http://mangashiro.net';
-    OnGetNameAndLink := @GetNameAndLink;
-    OnGetInfo := @GetInfo;
-    OnGetPageNumber := @GetPageNumber;
+    Result := AddModule;
+    with Result do
+    begin
+      Website := AWebsite;
+      RootURL := ARootURL;
+      OnGetNameAndLink := @GetNameAndLink;
+      OnGetInfo := @GetInfo;
+      OnGetPageNumber := @GetPageNumber;
+    end;
   end;
+
+begin
+  AddWebsiteModule('MangaShiro', 'http://mangashiro.net');
+  AddWebsiteModule('KintamaIndo', 'http://kintamaindo.net');
+  AddWebsiteModule('MangaKita', 'http://mangakita.net');
+  AddWebsiteModule('SubaPics', 'http://subapics.com');
 end;
 
 initialization
