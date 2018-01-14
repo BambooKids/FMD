@@ -19,6 +19,8 @@ begin
   Result := NET_PROBLEM;
   dirurl := '/manga-list/';
   if Module.Website = 'MangaShiro' then dirurl := '/daftar-manga/';
+  if Module.Website = 'MangaKid' then dirurl := '/manga-lists/';
+  if Module.Website = 'MangaKyo' then dirurl := '/daftar-manga/';
   if MangaInfo.FHTTP.GET(Module.RootURL + dirurl) then
   begin
     Result := NO_ERROR;
@@ -89,6 +91,8 @@ begin
   AddWebsiteModule('MangaShiro', 'http://mangashiro.net');
   AddWebsiteModule('Subapics', 'http://subapics.com');
   AddWebsiteModule('MangaKita', 'http://www.mangakita.net');
+  AddWebsiteModule('MangaKid', 'http://mangakid.net');
+  AddWebsiteModule('MangaKyo', 'http://www.mangakyo.net')
 end;
 
 initialization
